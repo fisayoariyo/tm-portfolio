@@ -152,11 +152,6 @@ export function WorksArchiveShelf() {
             <span>Home / {site.name}</span>
           </Link>
 
-          <div className="flex items-center gap-2 font-mono text-[0.7rem] sm:text-xs uppercase tracking-widest text-black/60">
-            <span className="h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
-            <span>DRAWER 01 // ARCHIVE</span>
-          </div>
-
           <button
             type="button"
             onClick={() => setBriefOpen(true)}
