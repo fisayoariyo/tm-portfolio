@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #ededeb;
+  --paper-soft: #f4f4f2;
+  --ink: #111111;
+  --ink-soft: #383836;
+  --ink-muted: #72726e;
+  --line: rgba(17, 17, 17, 0.1);
+  --mist: #deddd8;
+  --accent: #111111;
+  --accent-deep: #000000;
+  --cta: #111111;
+  --cta-hover: #262626;
+  --ghost-border: #cfceca;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --font-display: var(--font-inter), "Helvetica Now Display", "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-inter), "Helvetica Now Text", "Helvetica Neue", Arial, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-mist: var(--mist);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-ghost: var(--ghost-border);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: var(--paper);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #111111;
+  color: #ededeb;
+}
+
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: #111111 !important;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #ffffff !important;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-primary:hover {
+    background-color: #2b2b2b !important;
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:disabled {
+    cursor: wait;
+    opacity: 0.6;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid #cfceca;
+    background-color: transparent;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #111111;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-ghost:hover {
+    border-color: #111111;
+    background-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 65%
+  );
+  animation: skeleton-shimmer 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
